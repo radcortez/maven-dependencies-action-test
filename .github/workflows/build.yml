@@ -13,11 +13,12 @@ jobs:
     name: build with jdk ${{matrix.java}}
 
     steps:
-      - uses: radcortez/maven-dependencies-action@main
-        name: build dependencies
-
       - uses: actions/checkout@v2
         name: checkout
+
+      # Build Dependencies after main checkout, because checkout tries to delete
+      - uses: radcortez/maven-dependencies-action@main
+        name: build dependencies
 
       - uses: actions/setup-java@v1
         name: set up jdk ${{matrix.java}}
