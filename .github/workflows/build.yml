@@ -20,15 +20,17 @@ jobs:
       - uses: radcortez/maven-dependencies-action@main
         name: build dependencies
         with:
-          repository: smallrye/smallrye-config
+          repository: |
+            eclipse/microprofile-config
+            smallrye/smallrye-config
 
-      - name: copy dependencies
-        run: cp -r /home/runner/work/_temp/_github_home/.m2 $HOME
-
-      - uses: actions/setup-java@v1
-        name: set up jdk ${{matrix.java}}
-        with:
-          java-version: ${{matrix.java}}
-
-      - name: build with maven
-        run: mvn -B verify --file pom.xml
+#      - name: copy dependencies
+#        run: cp -r /home/runner/work/_temp/_github_home/.m2 $HOME
+#
+#      - uses: actions/setup-java@v1
+#        name: set up jdk ${{matrix.java}}
+#        with:
+#          java-version: ${{matrix.java}}
+#
+#      - name: build with maven
+#        run: mvn -B verify --file pom.xml
